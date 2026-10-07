@@ -1,0 +1,714 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Benchmark of four Luxembourg wealth management operating-model archetypes, from market forces to strategic positioning, with five strategic recommendations.">
+<meta property="og:title" content="Luxembourg Wealth Management Operating Model Benchmark">
+<meta property="og:description" content="Market study and multidimensional benchmark of Luxembourg private banking operating models, with five strategic recommendations.">
+<meta property="og:image" content="docs/cover.png">
+<style>html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Luxembourg Wealth Benchmark</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&display=swap">
+<style>
+/* Layout concept: a consulting report as one long scroll. A navy cover band opens it, a sticky chain navigator follows the value chain
+   (market to positioning), and each section pairs one wide exhibit with a short reading. Boldness sits in the cover radar and the serif display type. */
+:root{
+  --paper:#F2F4F7; --surface:#FFFFFF; --surface-2:#E9EDF2; --ink:#0B1726; --ink-2:#38485B; --muted:#5F7086; --line:#D3DAE3;
+  --band:#0E2A47; --band-2:#16395D; --band-fg:#F2F6FA; --band-muted:#A9BBD0; --band-line:rgba(255,255,255,.16);
+  --sky:#0A74AB; --sky-band:#5CC2F0;
+  --heat:#0F3A5F; --on-hi:#FFFFFF; --on-chip:#FFFFFF;
+  --bA:#0A7F73; --bB:#5B4FC4; --bC:#B3680A; --bD:#B8435F;
+  --hA:#3FD0BE; --hB:#9A91F0; --hC:#F0B04F; --hD:#E67D98;
+  --disp:'Newsreader',Georgia,'Times New Roman',serif;
+  --sans:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0A1220; --surface:#101C2E; --surface-2:#172740; --ink:#E6EDF5; --ink-2:#B4C2D3; --muted:#8A9DB3; --line:#243650;
+    --band:#0D2540; --band-2:#14355A; --sky:#5CC2F0; --heat:#6FB6F0; --on-hi:#06182B; --on-chip:#0A1220;
+    --bA:#3FD0BE; --bB:#9A91F0; --bC:#F0B04F; --bD:#E67D98; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0A1220; --surface:#101C2E; --surface-2:#172740; --ink:#E6EDF5; --ink-2:#B4C2D3; --muted:#8A9DB3; --line:#243650;
+  --band:#0D2540; --band-2:#14355A; --sky:#5CC2F0; --heat:#6FB6F0; --on-hi:#06182B; --on-chip:#0A1220;
+  --bA:#3FD0BE; --bB:#9A91F0; --bC:#F0B04F; --bD:#E67D98; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin-inline:auto;padding-inline:clamp(16px,4vw,40px)}
+h1,h2,h3,h4,p,ul,dl,dd,figure{margin:0}
+ul{padding:0;list-style:none}
+a{color:var(--sky)}
+.num{font-variant-numeric:tabular-nums}
+.mono{font-family:var(--mono)}
+:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
+
+/* ---------- Cover ---------- */
+.cover{background:var(--band);color:var(--band-fg);padding-block:clamp(36px,6vw,72px) 0;position:relative;overflow:hidden}
+.cover-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:clamp(24px,4vw,56px);align-items:center}
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--sky-band)}
+.cover h1{font-family:var(--disp);font-weight:300;font-size:clamp(2.5rem,5.8vw,4.6rem);line-height:1.03;letter-spacing:-.02em;margin-top:18px;text-wrap:balance}
+.cover h1 em{font-style:normal;color:var(--sky-band)}
+.cover .lead{color:var(--band-muted);font-size:clamp(1rem,1.5vw,1.15rem);max-width:56ch;margin-top:22px}
+.cover-note{margin-top:22px;font-size:13px;color:var(--band-muted);border-left:2px solid var(--sky-band);padding-left:12px;max-width:62ch}
+.hero-radar{width:100%;max-width:470px;justify-self:center;display:block}
+.hero-radar .pg{transform-origin:300px 300px;animation:pop .9s cubic-bezier(.2,.7,.2,1) both}
+.hero-radar .pg:nth-of-type(2){animation-delay:.08s}.hero-radar .pg:nth-of-type(3){animation-delay:.16s}.hero-radar .pg:nth-of-type(4){animation-delay:.24s}
+@keyframes pop{from{opacity:0;transform:scale(.55)}to{opacity:1;transform:scale(1)}}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));margin-top:clamp(32px,5vw,56px);border-top:1px solid var(--band-line)}
+.stat{padding:22px 20px 26px 0;min-width:0}
+.stat+.stat{padding-left:20px;border-left:1px solid var(--band-line)}
+.stat b{display:block;font-family:var(--disp);font-weight:300;font-size:clamp(2.1rem,3.6vw,3rem);line-height:1;letter-spacing:-.02em}
+.stat span{display:block;margin-top:8px;font-size:13px;color:var(--band-muted);max-width:26ch}
+@media (max-width:900px){.cover-grid{grid-template-columns:minmax(0,1fr)}.stat+.stat{border-left:0;padding-left:0}.stat{padding-right:12px}}
+
+/* ---------- Chain navigator ---------- */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;padding-block:6px}
+.nav-in::-webkit-scrollbar{display:none}
+.nav a{flex:none;display:flex;gap:8px;align-items:baseline;text-decoration:none;color:var(--muted);font-size:13px;padding:8px 12px;border-radius:6px;white-space:nowrap}
+.nav a i{font-style:normal;font-family:var(--mono);font-size:11px;opacity:.7}
+.nav a:hover{color:var(--ink);background:var(--surface-2)}
+.nav a.on{color:var(--ink);background:var(--surface-2);box-shadow:inset 0 -2px 0 var(--sky)}
+
+/* ---------- Sections ---------- */
+.sec{padding-block:clamp(48px,7vw,88px);border-bottom:1px solid var(--line);scroll-margin-top:56px}
+.sec-head{max-width:760px;margin-bottom:clamp(26px,4vw,44px)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--sky)}
+.sec h2{font-family:var(--disp);font-weight:400;font-size:clamp(1.9rem,3.6vw,2.9rem);line-height:1.08;letter-spacing:-.015em;margin-top:12px;text-wrap:balance}
+.sec-head p{margin-top:16px;color:var(--ink-2);font-size:1.06rem;max-width:62ch}
+.split{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:start}
+@media (max-width:900px){.split{grid-template-columns:minmax(0,1fr)}}
+.exh{min-width:0}
+.exh-cap{font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--ink);margin-bottom:14px;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.exh-cap b{font-weight:600;color:var(--sky)}
+.src{margin-top:14px;font-size:12px;color:var(--muted);max-width:80ch}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:clamp(16px,2.4vw,28px)}
+.scroll-x{overflow-x:auto}
+.read h3{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:14px}
+.read li{padding:14px 0;border-top:1px solid var(--line);color:var(--ink-2);font-size:.97rem}
+.read li:last-child{border-bottom:1px solid var(--line)}
+.read li b{display:block;color:var(--ink);font-weight:600;margin-bottom:2px}
+.tag{font-family:var(--mono);font-size:11px;color:var(--muted);white-space:nowrap}
+
+/* chips */
+.chip{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--c);color:var(--on-chip);font:600 12px var(--mono);flex:none}
+
+/* ---------- Exec summary ---------- */
+.finds{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:0;border-top:2px solid var(--ink)}
+.find{padding:22px 24px 8px 0;min-width:0}
+.find+.find{padding-left:24px;border-left:1px solid var(--line)}
+.find h3{font-family:var(--disp);font-weight:400;font-size:1.45rem;line-height:1.15;margin-bottom:10px;text-wrap:balance}
+.find p{color:var(--ink-2);font-size:.97rem}
+.find .k{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--sky);display:block;margin-bottom:10px}
+@media (max-width:760px){.find+.find{border-left:0;padding-left:0;border-top:1px solid var(--line);margin-top:14px;padding-top:20px}}
+
+/* ---------- AuM chart ---------- */
+.aum{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(8px,2vw,22px);align-items:end;height:290px;padding-top:30px;border-bottom:1px solid var(--ink)}
+.aum .col{display:flex;flex-direction:column;justify-content:flex-end;height:100%;align-items:stretch}
+.aum .v{font-family:var(--mono);font-size:13px;text-align:center;margin-bottom:6px;font-variant-numeric:tabular-nums}
+.aum .bar{background:var(--heat);border-radius:2px 2px 0 0;position:relative}
+.aum .bar.est{background:repeating-linear-gradient(135deg,var(--heat) 0 6px,color-mix(in srgb,var(--heat) 45%,var(--surface)) 6px 12px)}
+.aum-x{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(8px,2vw,22px);margin-top:8px;font-family:var(--mono);font-size:12px;text-align:center;color:var(--muted)}
+.delta{display:inline-block;background:var(--sky);color:#fff;font-family:var(--mono);font-size:11px;padding:2px 6px;border-radius:3px;margin-bottom:6px}
+:root[data-theme="dark"] .delta{color:#06182B}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .delta{color:#06182B}}
+.col .dwrap{text-align:center}
+
+/* ---------- Business model cards ---------- */
+.cards4{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:18px}
+.arch{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:22px;min-width:0;border-top:3px solid var(--c)}
+.arch header{display:flex;gap:12px;align-items:center;margin-bottom:6px}
+.arch h3{font-family:var(--disp);font-weight:400;font-size:1.5rem;line-height:1.1}
+.arch .band{font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:14px;display:block}
+.arch dl{display:grid;grid-template-columns:110px minmax(0,1fr);gap:9px 14px;font-size:.93rem}
+.arch dt{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.arch dd{color:var(--ink-2)}
+@media (max-width:480px){.arch dl{grid-template-columns:minmax(0,1fr)}.arch dt{padding-top:6px}}
+
+/* ---------- Segments ---------- */
+.hbar{display:grid;grid-template-columns:70px minmax(0,1fr);gap:14px;align-items:center;margin-bottom:12px}
+.hbar .yr{font-family:var(--mono);font-size:13px;color:var(--muted)}
+.hbar .track{height:44px;background:var(--surface-2);border-radius:3px;position:relative}
+.hbar .fill{height:100%;border-radius:3px;background:var(--heat);display:flex;align-items:center;justify-content:flex-end;padding-right:10px;color:var(--on-hi);font-family:var(--mono);font-size:14px;font-weight:600;min-width:52px}
+.fit{width:100%;border-collapse:separate;border-spacing:3px;min-width:560px}
+.fit th{font-weight:500;font-size:12.5px;text-align:center;color:var(--ink-2);padding:6px 4px;vertical-align:bottom}
+.fit th:first-child,.fit td:first-child{text-align:left}
+.fit td{text-align:center;font-family:var(--mono);font-size:13px;padding:10px 6px;border-radius:3px}
+.fit td:first-child{padding-left:0;font-family:var(--sans);font-size:.92rem;color:var(--ink)}
+.hi{color:var(--on-hi)}
+
+/* ---------- Scorecard ---------- */
+.seg{display:inline-flex;flex-wrap:wrap;gap:4px;padding:4px;background:var(--surface-2);border-radius:8px;margin-bottom:18px}
+.seg button{font:500 13px var(--sans);color:var(--ink-2);background:transparent;border:0;border-radius:5px;padding:8px 14px;cursor:pointer}
+.seg button:hover{color:var(--ink)}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(11,23,38,.18)}
+.sc{width:100%;border-collapse:separate;border-spacing:3px;min-width:680px}
+.sc th{font-weight:500;font-size:12.5px;color:var(--ink-2);text-align:center;padding:4px 4px 10px;vertical-align:bottom}
+.sc th .chip{margin-bottom:6px}
+.sc th small{display:block;font-size:11px;color:var(--muted);font-weight:400;line-height:1.25}
+.sc th:first-child,.sc td:first-child{text-align:left}
+.sc td{text-align:center;font-family:var(--mono);font-size:15px;font-variant-numeric:tabular-nums;padding:12px 4px;border-radius:3px;position:relative}
+.sc td.dim{font-family:var(--sans);font-size:.95rem;color:var(--ink);padding-left:0;white-space:nowrap}
+.sc td.dim small{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.sc td.w{color:var(--muted);font-size:13px}
+.sc td.lead::after{content:"";position:absolute;inset:2px;border:1.5px solid currentColor;border-radius:2px;opacity:.75;pointer-events:none}
+.sc tr.tot td{font-size:20px;font-weight:600;padding-top:16px;background:transparent;color:var(--ink);border-top:2px solid var(--ink);border-radius:0}
+.sc tr.tot td.dim{font-size:.95rem;font-weight:600}
+.sc tr.tot td .mini{display:block;height:5px;border-radius:2px;background:var(--c);margin:8px auto 0;width:var(--w)}
+.sc tr.rk td{font-size:13px;color:var(--ink-2);background:transparent}
+.sc tr:not(.tot):not(.rk):hover td:not(.dim):not(.w){filter:brightness(1.06)}
+.reading{margin-top:16px;font-size:.97rem;color:var(--ink-2);max-width:78ch}
+.reading b{color:var(--ink)}
+.legend-s{display:flex;gap:10px;align-items:center;font-size:12px;color:var(--muted);margin-top:12px;flex-wrap:wrap}
+.legend-s .ramp{width:130px;height:8px;border-radius:2px;background:linear-gradient(90deg,color-mix(in srgb,var(--heat) 12%,var(--surface)),color-mix(in srgb,var(--heat) 82%,var(--surface)))}
+
+/* ---------- Radar section ---------- */
+.rad-tools{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.tog{display:inline-flex;gap:8px;align-items:center;font:500 13px var(--sans);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:5px 12px 5px 6px;cursor:pointer}
+.tog[aria-pressed="false"]{opacity:.45}
+.radar{display:block;width:100%;min-width:480px;height:auto}
+.radar .ring{fill:none;stroke:var(--line);stroke-width:1}
+.radar .ring.top{stroke:var(--muted);stroke-dasharray:3 4}
+.radar .axis{stroke:var(--line);stroke-width:1}
+.radar .rlab{font:500 15px var(--sans);fill:var(--ink)}
+.radar .rv{font:11px var(--mono);fill:var(--muted)}
+.radar .off{display:none}
+.radar polygon.s{fill-opacity:.1;stroke-width:2.5;stroke-linejoin:round}
+.bcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:14px;margin-top:26px}
+.bc{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px 18px;min-width:0}
+.bc header{display:flex;gap:10px;align-items:center;margin-bottom:10px;font-weight:600}
+.bc p{font-size:.9rem;color:var(--ink-2)}
+.bc p+p{margin-top:6px}
+.bc p b{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500;display:block}
+.bc .gap{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:10px;border-top:1px solid var(--line);padding-top:8px}
+
+/* ---------- Technology ---------- */
+.tech{width:100%;border-collapse:collapse;min-width:760px}
+.tech th{font-weight:500;font-size:13px;text-align:left;padding:0 12px 12px;vertical-align:bottom;color:var(--ink-2)}
+.tech th:first-child{padding-left:0}
+.tech td{padding:14px 12px;border-top:1px solid var(--line);vertical-align:top;font-size:.9rem;color:var(--ink-2)}
+.tech td:first-child{padding-left:0;color:var(--ink);font-weight:500;width:17%}
+.dots{display:flex;gap:3px;margin-bottom:7px}
+.dots i{width:14px;height:5px;border-radius:1px;background:var(--line)}
+.dots i.on{background:var(--c)}
+
+/* ---------- Cost ---------- */
+.cost{position:relative;padding-top:44px}
+.refs{position:absolute;inset:0 0 auto 190px;height:44px}
+.cost .ref{position:absolute;top:0;bottom:0;border-left:1px dashed var(--muted);transform:translateX(-.5px)}
+.refs .rl{position:absolute;top:0;transform:translateX(-50%);font-family:var(--mono);font-size:11px;line-height:1.2;color:var(--muted);text-align:center;white-space:nowrap}
+.refs .rl b{display:block;color:var(--ink);font-weight:600}
+.crow{display:grid;grid-template-columns:178px minmax(0,1fr);gap:12px;align-items:center;margin-bottom:12px;position:relative}
+.crow .lab{display:flex;gap:10px;align-items:center;font-size:.9rem;line-height:1.2}
+.crow .tr{height:40px;background:var(--surface-2);border-radius:3px;position:relative}
+.crow .fl{height:100%;background:var(--c);border-radius:3px;display:flex;align-items:center;justify-content:flex-end;padding-right:10px;font-family:var(--mono);font-size:14px;font-weight:600;color:var(--on-chip)}
+.reflines{position:absolute;top:44px;bottom:0;left:190px;right:0;pointer-events:none}
+.reflines .ref{position:absolute;top:0;bottom:0}
+@media (max-width:640px){.crow{grid-template-columns:minmax(0,1fr)}.refs,.reflines{left:0}.crow .lab{gap:8px}.cost{padding-top:48px}}
+.tiles{display:grid;gap:0}
+.tile{padding:18px 0;border-top:1px solid var(--line)}
+.tile:last-child{border-bottom:1px solid var(--line)}
+.tile b{display:block;font-family:var(--disp);font-weight:300;font-size:2.4rem;line-height:1;letter-spacing:-.02em}
+.tile span{display:block;margin-top:6px;font-size:.92rem;color:var(--ink-2)}
+
+/* ---------- Positioning ---------- */
+.pos{display:block;width:100%;min-width:520px;height:auto}
+.pos .g{stroke:var(--line);stroke-width:1}
+.pos .mean{stroke:var(--muted);stroke-width:1.2;stroke-dasharray:5 5}
+.pos text{font-family:var(--sans)}
+.pos .tk{font:11px var(--mono);fill:var(--muted)}
+.pos .ax{font:500 13px var(--sans);fill:var(--ink-2)}
+.pos .ql{font:500 13px var(--sans);fill:var(--muted);letter-spacing:.02em}
+.pos .bub{cursor:pointer;fill-opacity:.82;stroke-width:2}
+.pos .bub:hover,.pos .bub:focus{fill-opacity:1;outline:none}
+.pos .bl{font:600 14px var(--mono);fill:var(--on-chip);pointer-events:none}
+.pos .sel{fill:none;stroke:var(--ink);stroke-width:1.5;stroke-dasharray:3 3}
+.info{margin-top:16px;min-height:96px}
+.info h4{font-family:var(--disp);font-weight:400;font-size:1.35rem;display:flex;gap:10px;align-items:center}
+.info p{margin-top:6px;color:var(--ink-2);font-size:.95rem;max-width:68ch}
+.info .m{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:8px}
+
+/* ---------- Recommendations ---------- */
+.recs{border-top:2px solid var(--ink)}
+.rec{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.5fr);gap:clamp(18px,4vw,56px);padding-block:30px;border-bottom:1px solid var(--line)}
+.rec .big{font-family:var(--disp);font-weight:300;font-size:3.4rem;line-height:.9;color:var(--sky);letter-spacing:-.03em}
+.rec h3{font-family:var(--disp);font-weight:400;font-size:clamp(1.5rem,2.4vw,2rem);line-height:1.1;margin-top:8px;text-wrap:balance}
+.rec .gapchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.gc{font-family:var(--mono);font-size:11.5px;color:var(--ink-2);background:var(--surface-2);border-radius:4px;padding:4px 8px}
+.rec h4{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:6px}
+.rec .why{color:var(--ink-2);margin-bottom:16px}
+.rec ul{display:grid;gap:6px;margin-bottom:16px}
+.rec li{padding-left:18px;position:relative;font-size:.97rem;color:var(--ink-2)}
+.rec li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:2px;background:var(--sky)}
+.rec .kpi{font-size:.93rem;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:10px 14px}
+.rec .kpi b{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-right:8px}
+@media (max-width:760px){.rec{grid-template-columns:minmax(0,1fr)}}
+.rm{min-width:600px}
+.rm-h,.rm-r{display:grid;grid-template-columns:230px minmax(0,1fr);gap:14px;align-items:center}
+.rm-h{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.rm-cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.rm-h .rm-cols span{border-bottom:1px solid var(--ink);padding-bottom:6px}
+.rm-r{padding-block:7px;border-bottom:1px solid var(--line);font-size:.92rem}
+.rm-r .rm-cols{height:26px;background:repeating-linear-gradient(90deg,transparent 0 calc(33.333% - 1px),var(--line) calc(33.333% - 1px) 33.333%)}
+.rm-b{border-radius:3px;font-family:var(--mono);font-size:11px;display:flex;align-items:center;padding:0 8px;height:26px;color:var(--on-hi);background:var(--heat);white-space:nowrap;overflow:hidden}
+.rm-b.d{background:repeating-linear-gradient(135deg,var(--heat) 0 5px,color-mix(in srgb,var(--heat) 55%,var(--surface)) 5px 10px)}
+
+/* ---------- Method ---------- */
+.method{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(24px,4vw,56px)}
+.method h3{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:14px}
+.method li{padding:9px 0;border-top:1px solid var(--line);font-size:.92rem;color:var(--ink-2)}
+.method li b{color:var(--ink);font-weight:600}
+.method li a{overflow-wrap:anywhere}
+.foot{background:var(--band);color:var(--band-muted);padding-block:34px;font-size:13px}
+.foot b{color:var(--band-fg);font-weight:500}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.hero-radar .pg{animation:none}}
+</style>
+</head>
+<body>
+
+
+<header class="cover">
+  <div class="wrap">
+    <div class="cover-grid">
+      <div>
+        <div class="kicker">Market study · Wealth management and private banking · Luxembourg · October 2026</div>
+        <h1>Luxembourg Wealth Management <em>Operating Model</em> Benchmark</h1>
+        <p class="lead">Four operating-model archetypes, compared along the full chain from market forces to strategic positioning. The study ends with five moves for a Luxembourg wealth manager.</p>
+        <p class="cover-note">Market figures come from public KPMG, ABBL and CSSF-based sources. Scores and cost ratios for the four archetypes are an analytical model built for this study. They are not measurements of named institutions.</p>
+      </div>
+      <svg class="hero-radar" id="heroRadar" viewBox="0 0 600 600" aria-hidden="true"></svg>
+    </div>
+    <div class="stats">
+      <div class="stat"><b class="num">€94bn</b><span>increase in Luxembourg private banking AuM in 2024, the largest in over a decade</span></div>
+      <div class="stat"><b class="num">42</b><span>Luxembourg private banks covered by the 2025 KPMG-ABBL survey</span></div>
+      <div class="stat"><b class="num">5%</b><span>of AuM now comes from clients under €1m, down from 24% in thirteen years</span></div>
+      <div class="stat"><b class="num">72.7%</b><span>average cost-to-income ratio of Luxembourg private banks in 2024</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="nav" aria-label="Study chain">
+  <div class="wrap"><div class="nav-in" id="nav"></div></div>
+</nav>
+
+<main>
+<section class="sec" id="summary" style="padding-block:clamp(40px,6vw,72px)">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">Executive summary</div><h2>Growth is strong. The operating model behind it is under strain.</h2></div>
+    <div class="finds">
+      <div class="find"><span class="k">Finding 1</span><h3>Record assets, thin margins</h3><p>Assets grew by €94bn in 2024, yet private banks still run a 72.7% average cost-to-income ratio against 55.8% for universal banks.</p></div>
+      <div class="find"><span class="k">Finding 2</span><h3>Automation is the widest gap</h3><p>Archetype scores on automation range from 3.2 to 4.6. That 1.4-point spread is the largest across the eight dimensions.</p></div>
+      <div class="find"><span class="k">Finding 3</span><h3>Efficiency alone does not win</h3><p>The most efficient archetype (B, 4.4) comes last on the balanced composite (3.82). The leader (C, 4.29) pairs digital, data and automation.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="market">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">Step 1 · Market</div><h2>A record year for assets, and pressure on the model that earns from them</h2>
+      <p>Luxembourg is the largest private banking centre in the European Union. Assets jumped in 2024, while costs have grown faster than commissions and the client base has moved up the wealth ladder.</p></div>
+    <div class="split">
+      <figure class="exh">
+        <div class="exh-cap"><b>Exhibit 1</b> Private banking assets under management, Luxembourg, € billion</div>
+        <div class="panel">
+          <div class="aum" id="aum"></div>
+          <div class="aum-x" id="aumx"></div>
+        </div>
+        <figcaption class="src">Hatched bar: 2024 level derived from the reported 2023 base of €628bn plus the reported €94bn increase. Reported growth of 14% implies a slightly lower figure, because the scope of banks in the survey changes between editions. Source: KPMG-ABBL Private Banking Reports 2024 and 2025; ABBL-KPMG-CSSF.</figcaption>
+      </figure>
+      <div class="read">
+        <h3>Five forces on the operating model</h3>
+        <ul>
+          <li><b>Intergenerational transfer</b>Heirs expect transparency, hybrid digital journeys, and access to private markets and sustainable solutions (ABBL, 2026).</li>
+          <li><b>Cost pressure</b>In 2023, operating expenses rose 8.5% while commission income fell 1.2% (KPMG-ABBL 2024).</li>
+          <li><b>Digital competition</b>Global wealth platforms and fintech entrants offer seamless access to alternatives (PwC Luxembourg, via Paperjam).</li>
+          <li><b>Regulation as a catalyst</b>DORA is seen as a lever for transformation, not only a compliance cost (same source).</li>
+          <li><b>Consolidation</b>The number of private banks keeps falling, almost entirely through consolidation (Paperjam interview with the PBGL chair).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="models">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">Step 2 · Business model</div><h2>Four ways to run a wealth business in Luxembourg</h2>
+      <p>The benchmark uses four anonymised archetypes. Each reflects a family of operating models found in the market, so none stands for a single named bank.</p></div>
+    <div class="cards4" id="cards4"></div>
+    <p class="src">Size bands follow the KPMG-ABBL convention: large above €20bn AuM, mid €5 to 20bn, small below €5bn.</p>
+  </div>
+</section>
+
+<section class="sec" id="segments">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">Step 3 · Client segments</div><h2>The client base has moved up the wealth ladder</h2>
+      <p>Assets from clients with under €1m fell from 24% to 5% of the total in thirteen years. Reaching the next generation of wealth now takes a different entry model, not a thinner version of the private banking one.</p></div>
+    <div class="split">
+      <figure class="exh">
+        <div class="exh-cap"><b>Exhibit 2</b> Share of private banking AuM from clients with under €1m</div>
+        <div class="panel" id="segbars"></div>
+        <figcaption class="src">Source: ABBL-KPMG-CSSF Private Banking Report 2025, as reported by Paperjam.</figcaption>
+      </figure>
+      <div class="read">
+        <h3>What it means</h3>
+        <ul>
+          <li><b>Concentration at the top</b>Assets are increasingly held by a smaller number of larger relationships, which raises the cost of losing one.</li>
+          <li><b>A thin entry tier</b>A first private banking experience for emerging wealth is still immature in Luxembourg, according to industry commentary.</li>
+          <li><b>Next-gen entrepreneurs</b>Technology founders realise wealth earlier, which shifts the profile of the future client.</li>
+        </ul>
+      </div>
+    </div>
+    <figure class="exh" style="margin-top:44px">
+      <div class="exh-cap"><b>Exhibit 3</b> Segment fit by archetype, score from 1 (weak) to 5 (strong)</div>
+      <div class="panel scroll-x"><table class="fit" id="fit"></table></div>
+      <figcaption class="src">Segments follow common industry bands. Fit scores are an analytical judgement made for this study.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="sec" id="operating">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">Step 4 · Operating model</div><h2>The scorecard: eight dimensions, four archetypes</h2>
+      <p>Scores run from 1 (ad hoc) to 5 (leading). Change the weighting to see how much the ranking depends on what a bank values most.</p></div>
+    <figure class="exh">
+      <div class="exh-cap"><b>Exhibit 4</b> Multidimensional benchmark and weighted composite</div>
+      <div class="seg" id="presets" role="group" aria-label="Weighting"></div>
+      <div class="panel scroll-x"><table class="sc" id="score"></table></div>
+      <div class="legend-s"><span>Lower score</span><span class="ramp"></span><span>Higher score</span><span>·</span><span>Outlined cell: best on that dimension</span></div>
+      <p class="reading" id="reading"></p>
+    </figure>
+  </div>
+</section>
+
+<section class="sec" id="digital">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">Step 5 · Digital capabilities</div><h2>No archetype leads everywhere</h2>
+      <p>The profile of each archetype shows where it is strong and where it trails the best in class. Use the chips to isolate one or compare several.</p></div>
+    <figure class="exh">
+      <div class="exh-cap"><b>Exhibit 5</b> Capability profile across eight dimensions, scale 3.0 to 5.0</div>
+      <div class="rad-tools" id="radtools"></div>
+      <div class="panel scroll-x"><svg class="radar" id="radar" viewBox="0 0 720 620" role="img" aria-label="Radar chart comparing the four archetypes on eight dimensions"></svg></div>
+    </figure>
+    <div class="bcards" id="bcards"></div>
+  </div>
+</section>
+
+<section class="sec" id="tech">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">Step 6 · Technology</div><h2>The stack decides how fast a bank can change</h2>
+      <p>Behind every capability score sits a technology layer. The fingerprints below describe how each archetype typically builds that layer, and how mature it is on a five-step scale.</p></div>
+    <figure class="exh">
+      <div class="exh-cap"><b>Exhibit 6</b> Technology stack fingerprint by archetype</div>
+      <div class="panel scroll-x"><table class="tech" id="tech-t"></table></div>
+      <figcaption class="src">Qualitative archetype fingerprints and an analytical maturity judgement made for this study.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="sec" id="cost">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">Step 7 · Cost and performance</div><h2>Cost-to-income is where the models diverge</h2>
+      <p>Luxembourg private banks post lower cost-to-income ratios than their Swiss peers, but the sector average still sits well above universal banks. Each archetype is placed against three public reference points.</p></div>
+    <div class="split">
+      <figure class="exh">
+        <div class="exh-cap"><b>Exhibit 7</b> Cost-to-income ratio, 2024, per cent</div>
+        <div class="panel"><div class="cost" id="costchart"></div></div>
+        <figcaption class="src">The axis runs from 40% to 90%, so bar length shows distance above 40%. Reference lines: all Luxembourg banks 46%, universal banks 55.8%, private banks 72.7% (KPMG Luxembourg Banking Insights 2025, 2024 data). Archetype ratios are modelled estimates for this study.</figcaption>
+      </figure>
+      <div class="tiles">
+        <div class="tile"><b class="num">42% vs 70%</b><span>Personnel share of total costs, Luxembourg versus Switzerland, on 2023 data (KPMG-ABBL 2024).</span></div>
+        <div class="tile"><b class="num">+8.5% / −1.2%</b><span>Operating expenses versus commission income growth in 2023, the gap that squeezes margins as rates fall.</span></div>
+        <div class="tile"><b class="num">2022 to 2024</b><span>Luxembourg private banks posted lower cost-to-income ratios than Swiss competitors in each of the three years (KPMG-ABBL 2025).</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="position">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">Step 8 · Strategic positioning</div><h2>Where each archetype stands, and what that implies</h2>
+      <p>Two composite indices place the archetypes against each other. The dashed lines mark the peer average. Select a bubble to read the positioning.</p></div>
+    <figure class="exh">
+      <div class="exh-cap"><b>Exhibit 8</b> Positioning map, bubble size shows size band</div>
+      <div class="panel scroll-x"><svg class="pos" id="pos" viewBox="0 0 760 520" role="img" aria-label="Positioning map of the four archetypes"></svg></div>
+      <div class="panel info" id="info" aria-live="polite"></div>
+    </figure>
+  </div>
+</section>
+
+<section class="sec" id="next">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">Recommendations</div><h2>What should a Luxembourg wealth manager do next?</h2>
+      <p>Five moves, ordered by how much benchmark gap and market pressure each one addresses. Targets are illustrative ambitions to anchor a business case, not forecasts.</p></div>
+    <div class="recs" id="recs"></div>
+    <figure class="exh" style="margin-top:56px">
+      <div class="exh-cap"><b>Exhibit 9</b> Indicative roadmap over three horizons</div>
+      <div class="panel scroll-x"><div class="rm" id="rm"></div></div>
+    </figure>
+  </div>
+</section>
+
+<section class="sec" id="method" style="border-bottom:0">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">Method and sources</div><h2>How the benchmark was built</h2></div>
+    <div class="method">
+      <div>
+        <h3>Scoring grid</h3>
+        <ul id="grid"></ul>
+      </div>
+      <div>
+        <h3>Sources</h3>
+        <ul>
+          <li><b>KPMG-ABBL Private Banking Report 2025.</b> AuM increase of €94bn in 2024, cost-to-income comparison with Switzerland. <a href="https://kpmg.com/lu/en/home/insights/2025/10/kpmg-abbl-private-banking-report-2025.html" target="_blank" rel="noopener">kpmg.com</a></li>
+          <li><b>KPMG-ABBL Private Banking Report 2024.</b> AuM €628bn in 2023, expenses and commissions, personnel share of costs. <a href="https://kpmg.com/lu/en/home/insights/2025/01/kpmg-abbl-private-banking-report-2024.html" target="_blank" rel="noopener">kpmg.com</a></li>
+          <li><b>KPMG Luxembourg banking performance indicators 2025.</b> Cost-to-income by bank type. <a href="https://kpmg.com/lu/en/home/insights/2025/06/luxembourg-banking-insights-2025/banking-performance-indicators.html" target="_blank" rel="noopener">kpmg.com</a></li>
+          <li><b>Paperjam, mass affluent and private banking.</b> Share of AuM from clients under €1m. <a href="https://paperjam.lu/article/banque-privee-langle-mort-des-mass-affluent" target="_blank" rel="noopener">paperjam.lu</a></li>
+          <li><b>Paperjam, private banking outlook.</b> Interview with the PBGL chair on flows and consolidation. <a href="https://en.paperjam.lu/article/we-are-not-in-a-run-for-cover-mindset-in-private-banking" target="_blank" rel="noopener">paperjam.lu</a></li>
+          <li><b>Paperjam, reinventing banking in Luxembourg.</b> Digital competition and DORA. <a href="https://en.paperjam.lu/article/reinventing-banking-in-luxembourg-priorities-for-the-next-decade" target="_blank" rel="noopener">paperjam.lu</a></li>
+          <li><b>ABBL, 2026 publications.</b> Next-generation clients and digital transformation. <a href="https://www.abbl.lu/?p=8941" target="_blank" rel="noopener">abbl.lu</a></li>
+          <li><b>Chronicle.lu.</b> AuM of €508bn (2020), €599bn (2021) and €585bn (2022). <a href="https://chronicle.lu/category/surveys-reports/47574-luxembourg-private-banking-aum-drop-2-to-eur585bn-net-income-up-24-in-2022" target="_blank" rel="noopener">chronicle.lu</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot"><div class="wrap"><b>Luxembourg Wealth Management Operating Model Benchmark.</b> Portfolio study by Aishwarya, Business Analyst and PMO. Archetype scores, fit ratings, technology fingerprints and cost ratios are an illustrative analytical model. Market figures are public and attributed above.</div></footer>
+
+<script>
+const $=(s,r=document)=>r.querySelector(s);
+const f1=n=>n.toFixed(1), f2=n=>n.toFixed(2);
+const BANKS=[
+ {id:'A',name:'International private bank',short:'International PB',size:'Large',band:'Large · above €20bn AuM',r:24,ci:66,
+  core:'Ultra and very-high-net-worth families and entrepreneurs across Europe',rev:'Fees on discretionary and advisory mandates, plus lending',rm:'Senior relationship managers backed by specialist desks',moat:'Cross-border expertise and wealth structuring',watch:'A heavy cost base that digital catch-up has not yet lightened',
+  pos:'Strong on experience and data, held back by a cost base that has not yet caught up with its digital ambition.'},
+ {id:'B',name:'Universal bank wealth hub',short:'Universal hub',size:'Large',band:'Large · above €20bn AuM',r:24,ci:58,
+  core:'Affluent and high-net-worth clients referred from group retail and corporate banking',rev:'Net interest income and product distribution',rm:'Pooled advisors fed by group referrals',moat:'Balance sheet and a ready client funnel',watch:'A fragmented stack and slow release cycles for wealth features',
+  pos:'Efficient and compliant, but a group stack and a referral model limit client experience and automation.'},
+ {id:'C',name:'Digital wealth challenger',short:'Digital challenger',size:'Mid',band:'Mid · €5 to 20bn AuM',r:17,ci:63,
+  core:'Emerging wealth, technology entrepreneurs and the next generation',rev:'Platform and advisory fees',rm:'Hybrid model: small advisor team plus digital advice',moat:'Product velocity and a real-time data platform',watch:'Less depth in complex structuring and private markets',
+  pos:'Digital and data leader at mid scale. The open question is depth in private markets and complex structuring.'},
+ {id:'D',name:'Heritage boutique',short:'Heritage boutique',size:'Small',band:'Small · below €5bn AuM',r:12,ci:77,
+  core:'Long-standing families who value discretion',rev:'Relationship-led fees',rm:'High-touch generalist relationship managers',moat:'Trust, discretion and continuity',watch:'Scale threshold and attrition of the next generation',
+  pos:'Trusted relationships, but manual processes and small scale put its cost-to-income ratio at risk.'}
+];
+const DIMS=[
+ {k:'eff',n:'Operational efficiency',g:'Operating'},{k:'aut',n:'Automation',g:'Operating'},{k:'adv',n:'Advisor enablement',g:'Operating'},
+ {k:'dig',n:'Digital maturity',g:'Digital'},{k:'cx',n:'Client experience',g:'Digital'},
+ {k:'data',n:'Data maturity',g:'Data and tech'},{k:'reg',n:'Regulatory technology',g:'Data and tech'},
+ {k:'prod',n:'Private-markets access',g:'Offer'}
+];
+const SC={eff:[3.7,4.4,4.0,3.5],aut:[4.1,3.2,4.6,3.8],adv:[4.3,3.5,4.2,3.8],dig:[4.2,3.6,4.7,3.9],cx:[4.5,3.8,4.3,4.1],data:[4.4,3.7,4.5,3.9],reg:[4.0,4.3,4.1,3.6],prod:[4.4,3.9,3.7,4.2]};
+const PRESETS={
+ balanced:{label:'Balanced',w:{eff:15,aut:10,adv:10,dig:15,cx:15,data:15,reg:10,prod:10}},
+ efficiency:{label:'Efficiency first',w:{eff:25,aut:20,adv:10,dig:10,cx:5,data:10,reg:10,prod:10}},
+ client:{label:'Client-centric',w:{eff:5,aut:5,adv:15,dig:15,cx:25,data:10,reg:10,prod:15}},
+ tech:{label:'Tech-led',w:{eff:10,aut:20,adv:5,dig:20,cx:10,data:20,reg:10,prod:5}}
+};
+const BYID=Object.fromEntries(BANKS.map((b,i)=>[b.id,i]));
+const composite=w=>BANKS.map((b,i)=>DIMS.reduce((s,d)=>s+SC[d.k][i]*w[d.k]/100,0));
+const mean=a=>a.reduce((x,y)=>x+y,0)/a.length;
+const chip=(id,extra='')=>`<span class="chip" style="--c:var(--b${id})${extra}">${id}</span>`;
+const heat=(pct)=>`background:color-mix(in srgb,var(--heat) ${pct.toFixed(0)}%,var(--surface))`;
+
+/* ---------- Radar builder ---------- */
+function radarSVG(o){
+  const {R,cx,cy,labels,band,rv}=o, n=DIMS.length, ang=i=>(-90+i*360/n)*Math.PI/180;
+  const pt=(i,s)=>{const r=R*(s-3)/2;return [cx+r*Math.cos(ang(i)),cy+r*Math.sin(ang(i))]};
+  const pts=(fn)=>DIMS.map((d,i)=>fn(d,i).map(v=>v.toFixed(1)).join(',')).join(' ');
+  let g='';
+  [3.5,4.0,4.5,5.0].forEach(lv=>{
+    const top=lv===5.0;
+    g+=band?`<polygon points="${pts((d,i)=>pt(i,lv))}" fill="none" stroke="rgba(255,255,255,${top?.28:.13})" stroke-width="1"/>`
+           :`<polygon class="ring${top?' top':''}" points="${pts((d,i)=>pt(i,lv))}"/>`;
+    if(rv){const [x,y]=pt(0,lv);g+=`<text class="rv" x="${(x+6).toFixed(1)}" y="${(y+3).toFixed(1)}">${lv.toFixed(1)}</text>`}
+  });
+  DIMS.forEach((d,i)=>{const [x,y]=pt(i,5);g+=band?`<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="rgba(255,255,255,.13)"/>`:`<line class="axis" x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}"/>`});
+  BANKS.forEach((b,bi)=>{
+    const col=`var(--${band?'h':'b'}${b.id})`;
+    const p=pts((d,i)=>pt(i,SC[d.k][bi]));
+    const dots=DIMS.map((d,i)=>{const [x,y]=pt(i,SC[d.k][bi]);return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${band?3.5:4.5}" fill="${col}"/>`}).join('');
+    g+=`<g class="${band?'pg':'s-'+b.id}" data-b="${b.id}"><polygon class="s" points="${p}" style="fill:${col};stroke:${col}${band?';fill-opacity:.12;stroke-width:2.2':''}"/>${dots}</g>`;
+  });
+  if(labels){
+    DIMS.forEach((d,i)=>{
+      const a=ang(i), lx=cx+(R+24)*Math.cos(a), ly=cy+(R+24)*Math.sin(a);
+      const anchor=Math.cos(a)>.3?'start':Math.cos(a)<-.3?'end':'middle';
+      const words=d.n.split(' '), L=words.length, lh=17;
+      let y0=Math.sin(a)<-.5?ly-(L-1)*lh:Math.sin(a)>.5?ly+12:ly+5-(L-1)*lh/2;
+      g+=`<text class="rlab" text-anchor="${anchor}">${words.map((w,k)=>`<tspan x="${lx.toFixed(1)}" y="${(y0+k*lh).toFixed(1)}">${w}</tspan>`).join('')}</text>`;
+    });
+  }
+  return g;
+}
+$('#heroRadar').innerHTML=radarSVG({R:236,cx:300,cy:300,labels:false,band:true,rv:false});
+$('#radar').innerHTML=radarSVG({R:185,cx:360,cy:310,labels:true,band:false,rv:true});
+
+/* ---------- Nav ---------- */
+const NAV=[['market','Market'],['models','Business model'],['segments','Segments'],['operating','Operating model'],['digital','Digital'],['tech','Technology'],['cost','Cost'],['position','Positioning'],['next','Next moves']];
+$('#nav').innerHTML=NAV.map((x,i)=>`<a href="#${x[0]}" data-t="${x[0]}"><i>${String(i+1).padStart(2,'0')}</i>${x[1]}</a>`).join('');
+document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const t=document.getElementById(a.dataset.t);if(t)t.scrollIntoView({behavior:'smooth',block:'start'})}));
+try{
+  const links=[...document.querySelectorAll('#nav a')];
+  const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.toggle('on',l.dataset.t===e.target.id));const on=links.find(l=>l.classList.contains('on'));if(on)on.scrollIntoView({inline:'nearest',block:'nearest'})}})},{rootMargin:'-45% 0px -50% 0px'});
+  NAV.forEach(x=>{const s=document.getElementById(x[0]);if(s)io.observe(s)});
+}catch(e){}
+
+/* ---------- Exhibit 1: AuM ---------- */
+(function(){
+  const d=[['2020',508,0],['2021',599,0],['2022',585,0],['2023',628,0],['2024',722,1]], max=760;
+  $('#aum').innerHTML=d.map(x=>`<div class="col"><div class="dwrap">${x[2]?'<span class="delta">+€94bn</span>':''}</div><div class="v">${x[2]?'~':''}${x[1]}</div><div class="bar${x[2]?' est':''}" style="height:${Math.round(x[1]/max*205)}px"></div></div>`).join('');
+  $('#aumx').innerHTML=d.map(x=>`<span>${x[0]}</span>`).join('');
+})();
+
+/* ---------- Business model cards ---------- */
+$('#cards4').innerHTML=BANKS.map(b=>`<article class="arch" style="--c:var(--b${b.id})"><header>${chip(b.id)}<h3>${b.name}</h3></header><span class="band">${b.band}</span>
+<dl><dt>Core clients</dt><dd>${b.core}</dd><dt>Revenue engine</dt><dd>${b.rev}</dd><dt>Advice model</dt><dd>${b.rm}</dd><dt>Moat</dt><dd>${b.moat}</dd><dt>Watch-out</dt><dd>${b.watch}</dd></dl></article>`).join('');
+
+/* ---------- Exhibit 2 + 3: segments ---------- */
+$('#segbars').innerHTML=[['2011',24],['2024',5]].map(x=>`<div class="hbar"><span class="yr">${x[0]}</span><div class="track"><div class="fill num" style="width:${(x[1]/30*100)}%">${x[1]}%</div></div></div>`).join('')+
+ `<p class="src" style="margin-top:6px">Scale 0 to 30 per cent. A fall of 19 points in thirteen years.</p>`;
+const SEGS=['Next-gen and emerging wealth','High net worth','Very high net worth and families','Ultra high net worth and family offices'];
+const FIT=[[3,4,5,5],[4,4,3,2],[5,4,2,1],[2,3,4,3]];
+$('#fit').innerHTML=`<thead><tr><th></th>${SEGS.map(s=>`<th>${s}</th>`).join('')}</tr></thead><tbody>`+
+ BANKS.map((b,bi)=>`<tr><td style="white-space:nowrap">${chip(b.id)} <span style="margin-left:6px">${b.short}</span></td>${FIT[bi].map(v=>{const p=8+(v-1)/4*74;return `<td class="${p>=48?'hi':''}" style="${heat(p)}">${v}</td>`}).join('')}</tr>`).join('')+`</tbody>`;
+
+/* ---------- Exhibit 4: scorecard ---------- */
+let preset='balanced';
+function renderScore(){
+  const w=PRESETS[preset].w, tot=composite(w);
+  const order=tot.map((v,i)=>[v,i]).sort((a,b)=>b[0]-a[0]), rank=[];order.forEach((x,r)=>rank[x[1]]=r+1);
+  let h=`<thead><tr><th></th><th>Weight</th>${BANKS.map(b=>`<th>${chip(b.id)}<small>${b.short}</small></th>`).join('')}</tr></thead><tbody>`;
+  DIMS.forEach(d=>{
+    const row=SC[d.k], best=Math.max(...row);
+    h+=`<tr><td class="dim"><small>${d.g}</small>${d.n}</td><td class="w num">${w[d.k]}%</td>${row.map(v=>{const p=12+(v-3)/2*70;return `<td class="num ${p>=50?'hi':''} ${v===best?'lead':''}" style="${heat(p)}">${f1(v)}</td>`}).join('')}</tr>`;
+  });
+  h+=`<tr class="tot"><td class="dim">Weighted composite</td><td></td>${tot.map((v,i)=>`<td class="num">${f2(v)}<span class="mini" style="--c:var(--b${BANKS[i].id});--w:${((v-3)/2*100).toFixed(0)}%"></span></td>`).join('')}</tr>`;
+  h+=`<tr class="rk"><td class="dim">Rank</td><td></td>${rank.map(r=>`<td class="num">#${r}</td>`).join('')}</tr></tbody>`;
+  $('#score').innerHTML=h;
+  const top=order[0][1], last=order[order.length-1][1];
+  $('#reading').innerHTML=`Under the <b>${PRESETS[preset].label.toLowerCase()}</b> weighting, <b>Bank ${BANKS[top].id}</b> (${BANKS[top].short.toLowerCase()}) ranks first at ${f2(tot[top])} and <b>Bank ${BANKS[last].id}</b> ranks last at ${f2(tot[last])}. The gap between first and last is ${f2(tot[top]-tot[last])} points.`;
+  document.querySelectorAll('#presets button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.p===preset));
+}
+$('#presets').innerHTML=Object.keys(PRESETS).map(k=>`<button type="button" data-p="${k}" aria-pressed="${k===preset}">${PRESETS[k].label}</button>`).join('');
+document.querySelectorAll('#presets button').forEach(b=>b.addEventListener('click',()=>{preset=b.dataset.p;renderScore()}));
+renderScore();
+
+/* ---------- Exhibit 5: radar controls and cards ---------- */
+const active=new Set(BANKS.map(b=>b.id));
+function syncRadar(){
+  BANKS.forEach(b=>{const el=$('#radar .s-'+b.id);if(el)el.classList.toggle('off',!active.has(b.id))});
+  document.querySelectorAll('#radtools .tog').forEach(t=>t.setAttribute('aria-pressed',active.has(t.dataset.b)));
+}
+$('#radtools').innerHTML=BANKS.map(b=>`<button type="button" class="tog" data-b="${b.id}" aria-pressed="true">${chip(b.id)}${b.short}</button>`).join('');
+document.querySelectorAll('#radtools .tog').forEach(t=>t.addEventListener('click',()=>{const id=t.dataset.b;if(active.has(id)){if(active.size>1)active.delete(id)}else active.add(id);syncRadar()}));
+syncRadar();
+$('#bcards').innerHTML=BANKS.map((b,bi)=>{
+  const leads=DIMS.filter(d=>SC[d.k][bi]===Math.max(...SC[d.k])).map(d=>d.n);
+  const lags=DIMS.filter(d=>SC[d.k][bi]===Math.min(...SC[d.k])).map(d=>d.n);
+  const gap=mean(DIMS.map(d=>Math.max(...SC[d.k])-SC[d.k][bi]));
+  return `<div class="bc"><header>${chip(b.id)}${b.short}</header><p><b>Leads on</b>${leads.length?leads.join(', '):'No dimension'}</p><p><b>Lowest of the four on</b>${lags.length?lags.join(', '):'No dimension'}</p><div class="gap">Average gap to best in class: ${f2(gap)}</div></div>`;
+}).join('');
+
+/* ---------- Exhibit 6: technology ---------- */
+const TECH=[
+ ['Core and portfolio platform',[['Modernised core with vendor portfolio system and APIs',4],['Group-wide core with heavy customisation',3],['Cloud-native and modular',5],['Ageing core, part outsourced',3]]],
+ ['Client channels',[['Portal and mobile, e-signature, video advice',4],['Group retail app with a thin private layer',3],['Mobile-first with self-serve onboarding',5],['Secure messaging and PDF reporting',2]]],
+ ['Data and analytics',[['Client data hub, next-best-action pilots',4],['Group warehouse with siloed wealth views',3],['Event-driven platform, near real time',5],['Spreadsheets and manual management information',2]]],
+ ['Integration and cloud',[['API gateway on hybrid cloud',4],['Central group middleware',4],['API-first on multi-cloud',5],['Point-to-point interfaces',2]]],
+ ['AI and automation',[['GenAI copilots for advisors, scaling from pilot',4],['Robotic process automation in the back office',3],['Machine learning in KYC, GenAI meeting notes',5],['Early experiments',2]]],
+ ['Resilience and DORA',[['ICT register in place, third parties tested',4],['Group-led programme, strong',4],['Strong, with cloud concentration risk to manage',4],['Catch-up programme under way',3]]]
+];
+$('#tech-t').innerHTML=`<thead><tr><th></th>${BANKS.map(b=>`<th>${chip(b.id)} <span style="margin-left:6px">${b.short}</span></th>`).join('')}</tr></thead><tbody>`+
+ TECH.map(r=>`<tr><td>${r[0]}</td>${r[1].map((c,i)=>`<td><div class="dots" style="--c:var(--b${BANKS[i].id})">${[1,2,3,4,5].map(k=>`<i class="${k<=c[1]?'on':''}"></i>`).join('')}</div>${c[0]}</td>`).join('')}</tr>`).join('')+`</tbody>`;
+
+/* ---------- Exhibit 7: cost ---------- */
+(function(){
+  const lo=40, hi=90, pos=v=>((v-lo)/(hi-lo)*100).toFixed(2)+'%';
+  const refs=[[46,'All banks'],[55.8,'Universal'],[72.7,'Private banks']];
+  let h=`<div class="refs">${refs.map(r=>`<div class="rl" style="left:${pos(r[0])}"><b>${r[0]}%</b>${r[1]}</div>`).join('')}</div>`;
+  h+=`<div class="reflines">${refs.map(r=>`<div class="ref" style="left:${pos(r[0])};border-left:1px dashed var(--muted)"></div>`).join('')}</div>`;
+  h+=BANKS.map(b=>`<div class="crow" style="--c:var(--b${b.id})"><div class="lab">${chip(b.id)}<span>${b.short}</span></div><div class="tr"><div class="fl num" style="width:${((b.ci-lo)/(hi-lo)*100).toFixed(1)}%">${b.ci}%</div></div></div>`).join('');
+  $('#costchart').innerHTML=h;
+})();
+
+/* ---------- Exhibit 8: positioning ---------- */
+(function(){
+  const X0=3.4,X1=4.5,Y0=3.4,Y1=4.6,L=70,T=24,W=660,H=410;
+  const xs=v=>L+(v-X0)/(X1-X0)*W, ys=v=>T+(Y1-v)/(Y1-Y0)*H;
+  const xi=BANKS.map((b,i)=>mean(['eff','aut','reg'].map(k=>SC[k][i]))), yi=BANKS.map((b,i)=>mean(['dig','cx','adv','data'].map(k=>SC[k][i])));
+  const mx=mean(xi), my=mean(yi);
+  let g='';
+  [3.5,3.75,4.0,4.25,4.5].forEach(v=>{g+=`<line class="g" x1="${xs(v)}" y1="${T}" x2="${xs(v)}" y2="${T+H}"/><text class="tk" x="${xs(v)}" y="${T+H+18}" text-anchor="middle">${v.toFixed(2)}</text>`});
+  [3.5,3.75,4.0,4.25,4.5].forEach(v=>{g+=`<line class="g" x1="${L}" y1="${ys(v)}" x2="${L+W}" y2="${ys(v)}"/><text class="tk" x="${L-10}" y="${ys(v)+4}" text-anchor="end">${v.toFixed(2)}</text>`});
+  g+=`<line class="mean" x1="${xs(mx)}" y1="${T}" x2="${xs(mx)}" y2="${T+H}"/><line class="mean" x1="${L}" y1="${ys(my)}" x2="${L+W}" y2="${ys(my)}"/>`;
+  g+=`<text class="ql" x="${L+12}" y="${T+22}">Experience-led, cost-heavy</text><text class="ql" x="${L+W-12}" y="${T+22}" text-anchor="end">Scaled digital leaders</text>`;
+  g+=`<text class="ql" x="${L+12}" y="${T+H-12}">Heritage, at risk</text><text class="ql" x="${L+W-12}" y="${T+H-12}" text-anchor="end">Efficient but dated</text>`;
+  g+=`<text class="ax" x="${L+W/2}" y="${T+H+46}" text-anchor="middle">Operating efficiency index: efficiency, automation, regulatory technology</text>`;
+  g+=`<text class="ax" transform="translate(16 ${T+H/2}) rotate(-90)" text-anchor="middle">Client and digital index</text>`;
+  g+=`<circle class="sel" id="selring" r="30" cx="0" cy="0"/>`;
+  BANKS.forEach((b,i)=>{g+=`<g tabindex="0" role="button" aria-label="Bank ${b.id}, ${b.short}" data-i="${i}"><circle class="bub" cx="${xs(xi[i]).toFixed(1)}" cy="${ys(yi[i]).toFixed(1)}" r="${b.r+8}" style="fill:var(--b${b.id});stroke:var(--b${b.id})"/><text class="bl" x="${xs(xi[i]).toFixed(1)}" y="${(ys(yi[i])+5).toFixed(1)}" text-anchor="middle">${b.id}</text></g>`});
+  $('#pos').innerHTML=g;
+  const bal=composite(PRESETS.balanced.w);
+  function show(i){
+    const b=BANKS[i];
+    const ring=$('#selring');ring.setAttribute('cx',xs(xi[i]).toFixed(1));ring.setAttribute('cy',ys(yi[i]).toFixed(1));ring.setAttribute('r',b.r+16);
+    $('#info').innerHTML=`<h4>${chip(b.id)}${b.name}</h4><p>${b.pos}</p><div class="m num">${b.band} · efficiency index ${f2(xi[i])} · client and digital index ${f2(yi[i])} · balanced composite ${f2(bal[i])}</div>`;
+  }
+  document.querySelectorAll('#pos g[data-i]').forEach(el=>{const i=+el.dataset.i;el.addEventListener('click',()=>show(i));el.addEventListener('mouseenter',()=>show(i));el.addEventListener('focus',()=>show(i));el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();show(i)}})});
+  show(BYID.C);
+})();
+
+/* ---------- Recommendations ---------- */
+const gapChip=(k)=>{const row=SC[k], mx=Math.max(...row), who=BANKS[row.indexOf(mx)].id, d=DIMS.find(x=>x.k===k);return `${d.n}: best ${f1(mx)} (${who}), peer mean ${f1(mean(row))}`};
+const RECS=[
+ {t:'Industrialise the middle and back office',dims:['aut','eff'],
+  why:'Private banks average a 72.7% cost-to-income ratio, and in 2023 expenses grew 8.5% while commissions fell 1.2%. Automation shows the widest spread of any dimension.',
+  acts:['Straight-through onboarding and periodic KYC refresh','Automated suitability checks, reporting and fee billing','Workflow orchestration across front, middle and back office'],
+  kpi:'Cost-to-income down 8 to 10 points over three years; client onboarding in days, not weeks.'},
+ {t:'Go hybrid for the next generation',dims:['cx','dig','adv'],
+  why:'Heirs expect transparency and hybrid digital journeys, and a wave of intergenerational transfer is under way. Human advice stays central, so the aim is to equip advisors, not replace them.',
+  acts:['A client portal with a household view across generations','A copilot that prepares advisor meetings and follow-ups','Digital-first onboarding and a service tier for heirs'],
+  kpi:'Heirs engaged within 12 months of a transfer; most active clients using the digital channel.'},
+ {t:'Make data the operating system',dims:['data','reg'],
+  why:'Data maturity separates archetypes by 0.8 points, and DORA, GDPR and the EU AI Act all reward governed data. A single client view is the base for every other move.',
+  acts:['One governed client and portfolio data model','Controls for AI use that satisfy regulators','Analytics embedded in daily advisor and risk decisions'],
+  kpi:'A single golden source for client data; regulatory reporting produced from it without manual rework.'},
+ {t:'Open the private-markets shelf',dims:['prod'],
+  why:'Clients want access to private markets and sustainable solutions, and Luxembourg has the fund ecosystem to supply them. Operational friction in subscriptions and reporting is the usual blocker.',
+  acts:['A curated shelf of alternatives in Luxembourg fund wrappers','Automated subscription, capital-call and reporting flows','Advisor education and suitability support for complex products'],
+  kpi:'Share of AuM in alternatives and sustainable strategies, tracked each quarter against a stated target.'},
+ {t:'Pick a position, then partner or consolidate',dims:[],
+  why:'KPMG points to the need for critical mass, and consolidation is shaping the market. A bank that does not choose between scale, specialisation and digital leadership drifts into the lower-left corner of the map.',
+  acts:['A written choice of position and target segments','Capability partnerships for technology or white-label services','Readiness to acquire or be acquired, with a clear scale threshold'],
+  kpi:'Strategic position approved by the board; a partnership or transaction decision taken within 18 months.'}
+];
+$('#recs').innerHTML=RECS.map((r,i)=>{
+  const chips=r.dims.length?r.dims.map(k=>`<span class="gc">${gapChip(k)}</span>`).join(''):`<span class="gc">Balanced composite spread: ${f2(Math.max(...composite(PRESETS.balanced.w))-Math.min(...composite(PRESETS.balanced.w)))} points</span>`;
+  return `<article class="rec"><div><div class="big num">${i+1}</div><h3>${r.t}</h3><div class="gapchips">${chips}</div></div>
+  <div><h4>Why now</h4><p class="why">${r.why}</p><h4>What to do</h4><ul>${r.acts.map(a=>`<li>${a}</li>`).join('')}</ul><div class="kpi"><b>Ambition</b>${r.kpi}</div></div></article>`}).join('');
+
+/* roadmap: [start col, span, kind] where kind 'd' = decision and design */
+const RM=[['1. Industrialise operations',[[1,3,'Automate onboarding, KYC and reporting']]],
+ ['2. Hybrid next-gen model',[[1,1,'Design'],[2,2,'Portal, copilot, heir tier']]],
+ ['3. Data operating system',[[1,2,'Data model and governance'],[3,1,'Embed analytics']]],
+ ['4. Private-markets shelf',[[2,2,'Shelf and operations flows']]],
+ ['5. Position, partner, consolidate',[[1,1,'Decide'],[2,2,'Execute partnership or deal']]]];
+$('#rm').innerHTML=`<div class="rm-h"><span></span><div class="rm-cols"><span>0 to 6 months</span><span>6 to 18 months</span><span>18 to 36 months</span></div></div>`+
+ RM.map(r=>`<div class="rm-r"><span>${r[0]}</span><div class="rm-cols">${r[1].map((s,k)=>`<div class="rm-b${s[2]==='Design'||s[2]==='Decide'?' d':''}" style="grid-column:${s[0]} / span ${s[1]}">${s[2]}</div>`).join('')}</div></div>`).join('');
+
+/* ---------- Scoring grid ---------- */
+const GRID=[['Digital maturity','End-to-end digital journeys across onboarding, servicing and reporting.'],['Client experience','Seamless, personalised, multichannel service that is measured against client outcomes.'],['Operational efficiency','Lean processes and a low cost-to-income ratio relative to peers.'],['Automation','Straight-through processing in onboarding, KYC, suitability and reporting.'],['Data maturity','A governed single client view with analytics used in daily decisions.'],['Regulatory technology','Automated MiFID, AML and DORA controls and reporting.'],['Advisor enablement','Tools and copilots that raise advisor productivity and meeting quality.'],['Private-markets access','Breadth and operational ease of alternatives and sustainable products.']];
+$('#grid').innerHTML=GRID.map(g=>`<li><b>${g[0]}.</b> ${g[1]}</li>`).join('')+`<li><b>Scale.</b> 1 ad hoc, 2 emerging, 3 defined, 4 managed, 5 leading.</li>`;
+</script>
+
+</body>
+</html>
