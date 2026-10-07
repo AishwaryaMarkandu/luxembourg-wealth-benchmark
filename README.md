@@ -4,7 +4,7 @@
 
 ![Cover of the study](docs/cover.png)
 
-**Live page:** `https://<your-github-username>.github.io/luxembourg-wealth-benchmark/` (after enabling GitHub Pages, see below)
+**Live page:** `https://<AishwaryaMarkandu>.github.io/luxembourg-wealth-benchmark/` (after enabling GitHub Pages, see below)
 
 ## What this is
 
@@ -64,7 +64,7 @@ The page follows the viewer's light or dark theme and works down to phone width.
 No build step. Open `index.html` in a browser.
 
 ```bash
-git clone https://github.com/<your-github-username>/luxembourg-wealth-benchmark.git
+git clone https://github.com/<AishwaryaMarkandu>/luxembourg-wealth-benchmark.git
 cd luxembourg-wealth-benchmark
 open index.html        # macOS; on Windows use: start index.html
 ```
