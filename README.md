@@ -4,7 +4,7 @@
 
 ![Cover of the study](docs/cover.png)
 
-**Live page:** `https://AishwaryaMarkandu.github.io/luxembourg-wealth-benchmark/` (after enabling GitHub Pages, see below)
+**Live page:** `https://AishwaryaMarkandu.github.io/luxembourg-wealth-benchmark/` 
 
 ## What this is
 
