@@ -4,7 +4,7 @@
 
 ![Cover of the study](docs/cover.png)
 
-**Live page:** `https://AishwaryaMarkandu.github.io/luxembourg-wealth-benchmark/` 
+**Live page:** [Open the interactive report](https://aishwaryamarkandu.github.io/luxembourg-wealth-benchmark/)
 
 ## What this is
 
@@ -71,20 +71,13 @@ open index.html        # macOS; on Windows use: start index.html
 
 The page loads three Google Fonts (Newsreader, IBM Plex Sans, IBM Plex Mono) and falls back to system fonts offline.
 
-## Publish with GitHub Pages
-
-1. Push the repository to GitHub.
-2. Go to **Settings → Pages**.
-3. Under **Build and deployment**, choose **Deploy from a branch**, select `main` and `/ (root)`, then save.
-4. The page is live after about a minute at the address shown on that screen.
-
 ## Tech
 
 One self-contained HTML file with vanilla JavaScript and inline SVG. No framework, no dependency, no build.
 
 ## Author
 
-Built by **Aishwarya**, Business Analyst and PMO, as a personal portfolio project on financial services strategy and operating models.
+Built by **[Aishwarya](https://github.com/AishwaryaMarkandu)**, Business Analyst and PMO, as a personal portfolio project on financial services strategy and operating models.
 
 ## Disclaimer
 
